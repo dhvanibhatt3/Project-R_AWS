@@ -1,0 +1,23 @@
+<h1>PHOTOS BY: <%= @user.first_name %><% @user.last_name %></h1>
+<body>
+<% @photos.each do |photo| %>
+  <div>
+    <%= image_tag photo.url %>
+    Photo Posted on
+    <%= photo.date_time %>
+    <h2>Comments:</h2>
+    <% @comments.where("photo_id=?",photo.id).each do |comment| %>
+      <div>
+        <li>
+          <%= comment.comment_text %>
+          --Posted By:
+          <% @user = User.find(comment.user_id) %>
+          <%= link_to display_name(comment.user_id),user_photos_path(comment.user_id)%>
+          on
+          <%= comment.date_time %>
+        </li>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+</body>

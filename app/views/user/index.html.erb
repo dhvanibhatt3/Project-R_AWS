@@ -1,0 +1,17 @@
+<h1>Photosite User List Information</h1>
+<body>
+<table>
+  <tr>
+    <th>User</th>
+    <th>First Name</th>
+    <th>Last Name</th>
+  </tr>
+  <% for user in @users %>
+    <tr>
+      <td> <%= user.id %></td>
+      <td> <%= link_to user.first_name, {:action => "index", :controller => "photo", :id => user.id} %></td>
+      <td> <%= user.last_name %></td>
+    </tr>
+  <% end %>
+</table>
+</body>
